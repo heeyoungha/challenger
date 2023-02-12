@@ -7,13 +7,14 @@
 
 ### 서비스 흐름도
 <img width="581" alt="서비스흐름도" src="https://user-images.githubusercontent.com/73115727/218314831-0c378a9a-970a-47db-bea2-f788a793b811.png">
+
 ### DB설계
 <img width="885" alt="DB설계" src="https://user-images.githubusercontent.com/73115727/218314824-df04dbdf-90ab-4a73-b9d6-28f86cf76f6d.png">
 
 </br>
 
 <details>
-<summary><b> 🔻 프로젝트 소개 펼치기</b></summary>
+<summary><b> ✅ 프로젝트 소개 펼치기</b></summary>
 <div markdown="1">
 <img width="80%" alt="1" src="https://user-images.githubusercontent.com/73115727/218322015-f73e374e-eaa4-4d92-b393-ffa529b81933.png">
 <img width="80%" alt="2" src="https://user-images.githubusercontent.com/73115727/218322023-e197609c-2637-44e7-ac97-f8b86b34a3fc.png">
