@@ -6,8 +6,9 @@
 - 🎥 [챌린저 시연 영상](https://youtu.be/R9UEh0GK5l4)
 
 ### 서비스 흐름도
-
+<img width="581" alt="서비스흐름도" src="https://user-images.githubusercontent.com/73115727/218314831-0c378a9a-970a-47db-bea2-f788a793b811.png">
 ### DB설계
+<img width="885" alt="DB설계" src="https://user-images.githubusercontent.com/73115727/218314824-df04dbdf-90ab-4a73-b9d6-28f86cf76f6d.png">
 
 </br>
 
