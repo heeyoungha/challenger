@@ -12,6 +12,30 @@
 
 </br>
 
+<details>
+<summary><b>핵심 기능 개발 설명 펼치기</b></summary>
+<div markdown="1">
+<img width="80%" alt="1" src="https://user-images.githubusercontent.com/73115727/218322015-f73e374e-eaa4-4d92-b393-ffa529b81933.png">
+<img width="80%" alt="2" src="https://user-images.githubusercontent.com/73115727/218322023-e197609c-2637-44e7-ac97-f8b86b34a3fc.png">
+<img width="80%" alt="3" src="https://user-images.githubusercontent.com/73115727/218322027-fd20b95b-4378-4f21-97cd-7c4d944bb186.png">
+<img width="80%" alt="4" src="https://user-images.githubusercontent.com/73115727/218322029-65b76d17-f545-4237-8067-b0b694ffc8b0.png">
+<img width="80%" alt="5" src="https://user-images.githubusercontent.com/73115727/218322031-240cb071-b36d-4e92-bfff-0d09b7ec7fe2.png">
+<img width="80%" alt="6" src="https://user-images.githubusercontent.com/73115727/218322036-b5e37bcd-5a31-48d0-992e-928bbab7862d.png">
+<img width="80%" alt="7" src="https://user-images.githubusercontent.com/73115727/218322037-5204fcfa-787c-4a52-8c8c-8a1c4ed75f03.png">
+<img width="80%" alt="8" src="https://user-images.githubusercontent.com/73115727/218322039-5088a20b-3162-4a6e-81ca-dcd7888376d6.png">
+<img width="80%" alt="9" src="https://user-images.githubusercontent.com/73115727/218322044-3bebfc17-1973-42be-b96f-ab003643c28e.png">
+<img width="80%" alt="10" src="https://user-images.githubusercontent.com/73115727/218322045-162744cf-a19c-4e77-b9ed-6eb2378108d0.png">
+<img width="80%" src="![12](https://user-images.githubusercontent.com/73115727/218322173-d28d6666-9101-4df1-8eee-aafea8f7f312.png)">
+<img width="80%" src="![13](https://user-images.githubusercontent.com/73115727/218322174-78f039dd-879f-4bee-b1f7-eba2177f352b.png)">
+<img width="80%" src="![14](https://user-images.githubusercontent.com/73115727/218322175-c4e1f051-dfc3-405d-b6e4-ab8d518c4633.png)">
+<img width="80%" src="![15](https://user-images.githubusercontent.com/73115727/218322176-9ac0e367-90fd-43c8-9816-ce9c517b3db0.png)">
+<img width="80%" src="![16](https://user-images.githubusercontent.com/73115727/218322177-c30930d6-540b-4cd5-92fe-69c6e0cf66d7.png)">
+<img width="80%" src="![17](https://user-images.githubusercontent.com/73115727/218322178-3c8f30c1-5dc2-41a6-97e0-037a71ed1793.png)">
+<img width="80%" src="![18](https://user-images.githubusercontent.com/73115727/218322180-60eaac11-8601-4259-ba6d-c8d6849ad05a.png)">
+
+</div>
+</details>
+
 ## 🛠 개발환경
 
 ### protocol Tool
@@ -59,12 +83,13 @@ __`2. 이메일로 회원가입 인증`__
 
 __`3. 회원가입 유효성 검사`__
 - **JSR303, 커스텀검증 활용**
-- JSR303을 활용하여 @Length(min=4, max=10) @Valid 등으로 검증
-- - Validator 스프링 인터페이스를 구현하여 커스텀 검증
+  - JSR303을 활용하여 @Length(min=4, max=10) @Valid 등으로 검증
+  - Validator 스프링 인터페이스를 구현하여 커스텀 검증
+  
 __`4. 로그인 / 로그아웃`__
 - 스프링 시큐리티로 로그인, 로그아웃 설정
-- 
-### 1️⃣ 회원가입
+
+### 1️⃣ 프로필
 
 __`1. 소유자 여부에 따라 화면 다르게 노출`__
 - 타 유저
@@ -72,7 +97,7 @@ __`1. 소유자 여부에 따라 화면 다르게 노출`__
 - 유저 자신의 프로필
    - 수정 버튼 보이기
 
-__`2. 수정완료 메세지 알람 팝업 노출`__
+__`2. 수정완료 메세지 팝업 노출`__
 - **RedirectAttribute 클래스 사용**
 
 __`3. 프로필 알람 설정`__
