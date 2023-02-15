@@ -1,3 +1,5 @@
+- 프로젝트 실행 시 maven>wikihow>Lifecycle>compile 후 실행부탁드립니다.
+  - Q클래스 생성 위함입니다.
 # 📌 challenger 소개
 -  강의자료에 나온 스터디자료를 바탕으로 클론코딩한 프로젝트 입니다.
 > challenger는 '관심사를 기반으로 한 모임 및 챌린지를 이용하는 서비스'입니다.
