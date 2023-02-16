@@ -1,8 +1,9 @@
 package com.challenger.modules.account;
 
+import com.challenger.modules.account.form.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.challenger.modules.account.form.*;
+
 import com.challenger.modules.account.validator.NicknameValidator;
 import com.challenger.modules.tag.TagService;
 import com.challenger.modules.tag.Tag;

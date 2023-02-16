@@ -1,6 +1,6 @@
 package com.challenger.infra.config;
 
-import com.challenger.modules.notification.NotificationInterceptor;
+import com.challenger.modules.notification.service.NotificationInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.StaticResourceLocation;
 import org.springframework.context.annotation.Configuration;

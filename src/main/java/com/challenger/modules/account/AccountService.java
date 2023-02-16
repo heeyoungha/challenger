@@ -1,7 +1,10 @@
 package com.challenger.modules.account;
 
+import com.challenger.modules.account.Account;
+import com.challenger.modules.account.UserAccount;
 import com.challenger.modules.account.form.SignUpForm;
 import com.challenger.infra.config.AppProperties;
+import com.challenger.modules.account.AccountRepository;
 import com.challenger.modules.tag.Tag;
 import com.challenger.infra.mail.EmailMessage;
 import com.challenger.infra.mail.EmailService;
