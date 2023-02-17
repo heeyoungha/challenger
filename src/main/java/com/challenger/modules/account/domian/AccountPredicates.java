@@ -1,4 +1,4 @@
-package com.challenger.modules.account;
+package com.challenger.modules.account.domian;
 import com.challenger.modules.account.QAccount;
 import com.querydsl.core.types.Predicate;
 import com.challenger.modules.tag.Tag;

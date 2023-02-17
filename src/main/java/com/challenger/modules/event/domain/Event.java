@@ -1,7 +1,7 @@
 package com.challenger.modules.event.domain;
 
-import com.challenger.modules.account.Account;
-import com.challenger.modules.account.UserAccount;
+import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.domian.UserAccount;
 import com.challenger.modules.study.domain.Study;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

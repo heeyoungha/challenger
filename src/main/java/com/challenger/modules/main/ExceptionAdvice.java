@@ -1,7 +1,7 @@
 package com.challenger.modules.main;
 
-import com.challenger.modules.account.Account;
-import com.challenger.modules.account.CurrentAccount;
+import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.domian.CurrentAccount;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

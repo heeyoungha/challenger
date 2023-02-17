@@ -1,6 +1,6 @@
 package com.challenger.modules.event.service;
 
-import com.challenger.modules.account.Account;
+import com.challenger.modules.account.domian.Account;
 import com.challenger.modules.event.domain.Enrollment;
 import com.challenger.modules.event.repository.EnrollmentRepository;
 import com.challenger.modules.event.domain.Event;

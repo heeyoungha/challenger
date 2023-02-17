@@ -3,7 +3,7 @@ package com.challenger.modules.event.service.event;
 import com.challenger.infra.config.AppProperties;
 import com.challenger.infra.mail.EmailMessage;
 import com.challenger.infra.mail.EmailService;
-import com.challenger.modules.account.Account;
+import com.challenger.modules.account.domian.Account;
 import com.challenger.modules.event.domain.Enrollment;
 import com.challenger.modules.event.domain.Event;
 import com.challenger.modules.event.domain.event.EnrollmentEvent;

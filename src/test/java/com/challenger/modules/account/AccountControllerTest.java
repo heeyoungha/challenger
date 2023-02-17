@@ -2,6 +2,8 @@ package com.challenger.modules.account;
 
 import com.challenger.infra.mail.EmailMessage;
 import com.challenger.infra.mail.EmailService;
+import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.repository.AccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

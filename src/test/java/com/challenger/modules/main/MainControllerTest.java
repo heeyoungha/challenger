@@ -1,8 +1,8 @@
 package com.challenger.modules.main;
 
-import com.challenger.modules.account.AccountRepository;
-import com.challenger.modules.account.AccountService;
-import com.challenger.modules.account.form.SignUpForm;
+import com.challenger.modules.account.repository.AccountRepository;
+import com.challenger.modules.account.service.AccountService;
+import com.challenger.modules.account.domian.form.SignUpForm;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

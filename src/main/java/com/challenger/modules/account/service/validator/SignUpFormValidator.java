@@ -1,7 +1,7 @@
-package com.challenger.modules.account.validator;
+package com.challenger.modules.account.service.validator;
 
-import com.challenger.modules.account.AccountRepository;
-import com.challenger.modules.account.form.SignUpForm;
+import com.challenger.modules.account.repository.AccountRepository;
+import com.challenger.modules.account.domian.form.SignUpForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

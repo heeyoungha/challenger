@@ -1,4 +1,4 @@
-package com.challenger.modules.account.form;
+package com.challenger.modules.account.domian.form;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
