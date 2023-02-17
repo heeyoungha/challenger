@@ -1,6 +1,6 @@
 package com.challenger.modules.study.repository;
 
-import com.challenger.modules.study.QStudy;
+import com.challenger.modules.study.domain.QStudy;
 import com.challenger.modules.study.domain.Study;
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.JPQLQuery;
