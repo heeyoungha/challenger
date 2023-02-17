@@ -1,15 +1,15 @@
-package com.challenger.modules.account.service;
+package com.challenger.modules.account;
 
-import com.challenger.modules.account.domian.Account;
-import com.challenger.modules.account.repository.AccountRepository;
-import com.challenger.modules.account.domian.UserAccount;
-import com.challenger.modules.account.domian.form.SignUpForm;
+import com.challenger.modules.account.Account;
+import com.challenger.modules.account.AccountRepository;
+import com.challenger.modules.account.UserAccount;
+import com.challenger.modules.account.form.SignUpForm;
 import com.challenger.infra.config.AppProperties;
 import com.challenger.modules.tag.Tag;
 import com.challenger.infra.mail.EmailMessage;
 import com.challenger.infra.mail.EmailService;
-import com.challenger.modules.account.domian.form.Notifications;
-import com.challenger.modules.account.domian.form.Profile;
+import com.challenger.modules.account.form.Notifications;
+import com.challenger.modules.account.form.Profile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

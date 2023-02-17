@@ -1,6 +1,6 @@
 package com.challenger.modules.study.service;
 
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.study.domain.Study;
 import com.challenger.modules.study.domain.event.StudyCreatedEvent;
 import com.challenger.modules.study.domain.event.StudyUpdateEvent;

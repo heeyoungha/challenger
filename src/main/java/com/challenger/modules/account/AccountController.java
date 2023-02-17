@@ -1,11 +1,7 @@
-package com.challenger.modules.account.controller;
+package com.challenger.modules.account;
 
-import com.challenger.modules.account.domian.Account;
-import com.challenger.modules.account.repository.AccountRepository;
-import com.challenger.modules.account.service.AccountService;
-import com.challenger.modules.account.domian.CurrentAccount;
-import com.challenger.modules.account.domian.form.SignUpForm;
-import com.challenger.modules.account.service.validator.SignUpFormValidator;
+import com.challenger.modules.account.form.SignUpForm;
+import com.challenger.modules.account.validator.SignUpFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

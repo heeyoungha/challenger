@@ -1,8 +1,8 @@
 package com.challenger.modules.main;
 
-import com.challenger.modules.account.repository.AccountRepository;
-import com.challenger.modules.account.domian.CurrentAccount;
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.AccountRepository;
+import com.challenger.modules.account.CurrentAccount;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.event.repository.EnrollmentRepository;
 import com.challenger.modules.study.domain.Study;
 import com.challenger.modules.study.repository.StudyRepository;

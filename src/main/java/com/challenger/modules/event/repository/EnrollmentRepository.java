@@ -1,6 +1,6 @@
 package com.challenger.modules.event.repository;
 
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.event.domain.Enrollment;
 import com.challenger.modules.event.domain.Event;
 import org.springframework.data.jpa.repository.EntityGraph;

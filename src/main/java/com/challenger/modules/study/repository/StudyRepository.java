@@ -1,6 +1,6 @@
 package com.challenger.modules.study.repository;
 
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.study.domain.Study;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,16 +1,13 @@
-package com.challenger.modules.account.controller;
+package com.challenger.modules.account;
 
-import com.challenger.modules.account.domian.Account;
-import com.challenger.modules.account.service.AccountService;
-import com.challenger.modules.account.domian.CurrentAccount;
-import com.challenger.modules.account.domian.form.*;
+import com.challenger.modules.account.form.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.challenger.modules.account.service.validator.NicknameValidator;
+import com.challenger.modules.account.validator.NicknameValidator;
 import com.challenger.modules.tag.TagService;
 import com.challenger.modules.tag.Tag;
-import com.challenger.modules.account.service.validator.PasswordFormValidator;
+import com.challenger.modules.account.validator.PasswordFormValidator;
 import com.challenger.modules.tag.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -27,8 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.challenger.modules.account.controller.SettingsController.ROOT;
-import static com.challenger.modules.account.controller.SettingsController.SETTINGS;
+import static com.challenger.modules.account.SettingsController.ROOT;
+import static com.challenger.modules.account.SettingsController.SETTINGS;
 
 @Controller
 @RequestMapping(ROOT + SETTINGS)
@@ -76,7 +73,7 @@ public class SettingsController {
             return SETTINGS + PROFILE;
         }
 
-        accountService.updateProfile(account, profile);
+        accountService.updateProfile(account,profile);
         attributes.addFlashAttribute("message", "프로필을 수정했습니다.");
         return "redirect:/" + SETTINGS + PROFILE;
     }

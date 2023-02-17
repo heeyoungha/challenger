@@ -1,6 +1,6 @@
 package com.challenger.modules.notification.repository;
 
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.notification.domain.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;

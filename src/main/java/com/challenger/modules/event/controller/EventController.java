@@ -1,7 +1,7 @@
 package com.challenger.modules.event.controller;
 
-import com.challenger.modules.account.domian.CurrentAccount;
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.CurrentAccount;
+import com.challenger.modules.account.Account;
 import com.challenger.modules.event.domain.Enrollment;
 import com.challenger.modules.event.domain.Event;
 import com.challenger.modules.event.repository.EventRepository;

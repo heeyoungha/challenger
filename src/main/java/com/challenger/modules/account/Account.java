@@ -1,4 +1,4 @@
-package com.challenger.modules.account.domian;
+package com.challenger.modules.account;
 
 import com.challenger.modules.tag.Tag;
 import lombok.*;

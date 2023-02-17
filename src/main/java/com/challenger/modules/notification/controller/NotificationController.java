@@ -1,7 +1,7 @@
 package com.challenger.modules.notification.controller;
 
-import com.challenger.modules.account.domian.Account;
-import com.challenger.modules.account.domian.CurrentAccount;
+import com.challenger.modules.account.Account;
+import com.challenger.modules.account.CurrentAccount;
 import com.challenger.modules.notification.domain.Notification;
 import com.challenger.modules.notification.repository.NotificationRepository;
 import com.challenger.modules.notification.service.NotificationService;

@@ -1,6 +1,6 @@
-package com.challenger.modules.account.service.validator;
+package com.challenger.modules.account.validator;
 
-import com.challenger.modules.account.domian.form.PasswordForm;
+import com.challenger.modules.account.form.PasswordForm;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

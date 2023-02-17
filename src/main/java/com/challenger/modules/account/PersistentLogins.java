@@ -1,4 +1,4 @@
-package com.challenger.modules.account.domian;
+package com.challenger.modules.account;
 
 import lombok.Getter;
 import lombok.Setter;

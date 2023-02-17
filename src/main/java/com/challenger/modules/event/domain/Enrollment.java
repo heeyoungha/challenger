@@ -1,6 +1,6 @@
 package com.challenger.modules.event.domain;
 
-import com.challenger.modules.account.domian.Account;
+import com.challenger.modules.account.Account;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

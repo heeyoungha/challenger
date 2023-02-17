@@ -1,7 +1,8 @@
-package com.challenger.modules.account.domian.form;
+package com.challenger.modules.account.form;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+
 
 @Data
 public class Profile {
@@ -19,4 +20,5 @@ public class Profile {
     private String location;
 
     private String profileImage;
+
 }
