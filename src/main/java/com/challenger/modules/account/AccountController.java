@@ -19,9 +19,14 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AccountController {
 
+    private final SignUpFormValidator signUpFormValidator;
      private final AccountService accountService;
     private final AccountRepository accountRepository;
 
+    @InitBinder("signUpForm") // signUpSubmit의 SignUpForm 타입 이름을 캐멀케이스로 받아옴
+    public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(signUpFormValidator);
+    }
 
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
@@ -32,6 +37,11 @@ public class AccountController {
     @PostMapping("/sign-up")
     public String signUpSubmit(@Valid SignUpForm signUpForm, Errors errors) {
 
+        //백엔드에서 검증
+        if (errors.hasErrors()) {
+            return "account/sign-up";
+        }
+        //회원가입 처리
         Account account = accountService.processNewAccount(signUpForm);
         accountService.login(account);
         return "redirect:/";
