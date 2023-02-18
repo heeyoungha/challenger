@@ -109,7 +109,7 @@ public class AccountService implements UserDetailsService {
 
     public void updateProfile(Account account, Profile profile) {
         modelMapper.map(profile, account);
-        accountRepository.save(account);
+        accountRepository.save(account); // save구현체 안에서 account에 id값이 있다면 detached상태의 account를 merge시킴
     }
 
     public void updatePassword(Account account, String newPassword) {
