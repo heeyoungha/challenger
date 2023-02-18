@@ -34,7 +34,7 @@ import java.util.Set;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AccountService implements UserDetailsService {
+public class AccountService {
 
     private final AccountRepository accountRepository;
 
@@ -87,20 +87,7 @@ public class AccountService implements UserDetailsService {
         SecurityContextHolder.getContext().setAuthentication(token);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public UserDetails loadUserByUsername(String emailOrNickname) throws UsernameNotFoundException {
-        Account account = accountRepository.findByEmail(emailOrNickname);
-        if (account == null) {
-            account = accountRepository.findByNickname(emailOrNickname);
-        }
 
-        if (account == null) {
-            throw new UsernameNotFoundException(emailOrNickname);
-        }
-
-        return new UserAccount(account);
-    }
 
     public void completeSignUp(Account account) {
         account.completeSignUp();
