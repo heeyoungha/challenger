@@ -47,35 +47,15 @@ public class AccountService implements UserDetailsService {
 
     public Account processNewAccount(SignUpForm signUpForm) {
         Account newAccount = saveNewAccount(signUpForm);
-        sendSignUpConfirmEmail(newAccount);
         return newAccount;
     }
 
     private Account saveNewAccount(@Valid SignUpForm signUpForm) {
         signUpForm.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
         Account account = modelMapper.map(signUpForm, Account.class);
-        account.generateEmailCheckToken();
         return accountRepository.save(account);
     }
 
-    public void sendSignUpConfirmEmail(Account newAccount) {
-        Context context = new Context();
-        context.setVariable("link", "/check-email-token?token=" + newAccount.getEmailCheckToken() +
-                "&email=" + newAccount.getEmail());
-        context.setVariable("nickname", newAccount.getNickname());
-        context.setVariable("linkName", "이메일 인증하기");
-        context.setVariable("message", " 챌린저 서비스를 사용하려면 링크를 클릭하세요.");
-        context.setVariable("host", appProperties.getHost());
-        String message = templateEngine.process("mail/simple-link", context);
-
-        EmailMessage emailMessage = EmailMessage.builder()
-                .to(newAccount.getEmail())
-                .subject("챌린저, 회원 가입 인증")
-                .message(message)
-                .build();
-
-        emailService.sendEmail(emailMessage);
-    }
 
     public void login(Account account) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
