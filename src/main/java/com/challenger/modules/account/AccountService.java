@@ -37,7 +37,7 @@ import java.util.Set;
 public class AccountService implements UserDetailsService {
 
     private final AccountRepository accountRepository;
-    private final EmailService emailService;
+
     private final PasswordEncoder passwordEncoder;
 
     private final ModelMapper modelMapper;
@@ -81,7 +81,6 @@ public class AccountService implements UserDetailsService {
     }
 
     public void completeSignUp(Account account) {
-        account.completeSignUp();
         login(account);
     }
 
