@@ -98,7 +98,25 @@ public class SettingsController {
         return "redirect:/" + SETTINGS + PASSWORD;
     }
 
+    @GetMapping(NOTIFICATIONS)
+    public String updateNotificationsForm(@CurrentAccount Account account, Model model) {
+        model.addAttribute(account);
+        model.addAttribute(modelMapper.map(account, Notifications.class));
+        return SETTINGS + NOTIFICATIONS;
+    }
 
+    @PostMapping(NOTIFICATIONS)
+    public String updateNotifications(@CurrentAccount Account account, @Valid Notifications notifications, Errors errors,
+                                      Model model, RedirectAttributes attributes) {
+        if (errors.hasErrors()) {
+            model.addAttribute(account);
+            return SETTINGS + NOTIFICATIONS;
+        }
+
+        accountService.updateNotifications(account, notifications);
+        attributes.addFlashAttribute("message", "알림 설정을 변경했습니다.");
+        return "redirect:/" + SETTINGS + NOTIFICATIONS;
+    }
 
     @GetMapping(TAGS)
     public String updateTags(@CurrentAccount Account account, Model model) throws JsonProcessingException {
