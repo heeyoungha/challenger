@@ -63,14 +63,14 @@ __`4. 로그인 / 로그아웃`__ : pushpin: [코드 확인](https://github.com/
 
 ### 1️⃣ 프로필
 
-__`1. 소유자 여부에 따라 화면 다르게 노출`__
+__`1. 소유자 여부에 따라 화면 다르게 노출`__ :pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/e4383c8203978d65354acfadc4b824aa3798103f)
 - 타 유저
     - account의 속성 연동하여 보여주기
 - 유저 자신의 프로필
     - 수정 버튼 보이기
 
-__`2. 수정완료 메세지 팝업 노출`__
-- **RedirectAttribute 클래스 사용**
+__`2. 수정완료 메세지 팝업 노출`__ :pushpin: [코드 확인](Url)
+- RedirectAttribute 클래스 사용
 
 __`3. 프로필 알람 설정`__
 - **부트스트랩 Froms의 Switches 활용** :pushpin: [코드 확인](Url)

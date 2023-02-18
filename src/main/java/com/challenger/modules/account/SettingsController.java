@@ -67,14 +67,14 @@ public class SettingsController {
 
     @PostMapping(PROFILE)
     public String updateProfile(@CurrentAccount Account account, @Valid Profile profile, Errors errors,
-                                Model model, RedirectAttributes attributes) {
+                                Model model) {
         if (errors.hasErrors()) {
             model.addAttribute(account);
             return SETTINGS + PROFILE;
         }
 
         accountService.updateProfile(account,profile);
-        attributes.addFlashAttribute("message", "프로필을 수정했습니다.");
+
         return "redirect:/" + SETTINGS + PROFILE;
     }
 
