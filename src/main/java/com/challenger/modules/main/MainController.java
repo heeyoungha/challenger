@@ -53,6 +53,10 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     @GetMapping("/search/study")
     public String searchStudy(String keyword, Model model,
