@@ -36,11 +36,11 @@
 ### 0️⃣ 회원가입
 
 __`1. 패스워드 암호화`__
-- **PasswordEncoder 사용** :pushpin: [코드 확인](Url)
+- **PasswordEncoder 사용** :pushpin: [코드 확인]( https://github.com/hy-HA/challenger/commit/53a5b62717be4080904331f362da6c0bf5f0467d)
     - PasswordEncoderFactories.createDelegatingPasswordEncoder() 활용
 
 __`2. 이메일로 회원가입 인증`__
-- **Gmail SMTP, MailSender 활용** :pushpin: [코드 확인](Url)
+- **Gmail SMTP, MailSender 활용** :pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/7cedab8436589944890edd3dad17cc3106a19cef)
     - 목적
         - 존재하지 않는 가상의 이메일로 가입하는 것을 방지하기 위함
         - 서비스를 사용중인 진짜 유저수를 확보 가능
@@ -53,12 +53,12 @@ __`2. 이메일로 회원가입 인증`__
     - 스프링 MailSender 인터페이스 사용
         - JavaMailSender의 MimeMessage 사용
 
-__`3. 회원가입 유효성 검사`__
+__`3. 회원가입 유효성 검사`__ : pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/f34c6118db533fd9d54ec8eff0ff5bd069f1bb04)
 - **JSR303, 커스텀검증 활용**
     - JSR303을 활용하여 @Length(min=4, max=10) @Valid 등으로 검증
     - Validator 스프링 인터페이스를 구현하여 커스텀 검증
 
-__`4. 로그인 / 로그아웃`__
+__`4. 로그인 / 로그아웃`__ : pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/778ebbaeb6167c24a2e8d69e2051f208cff6c0bb)
 - 스프링 시큐리티로 로그인, 로그아웃 설정
 
 ### 1️⃣ 프로필
