@@ -40,11 +40,48 @@ public class AccountController {
             return "account/sign-up";
         }
 
+        Account account = accountService.processNewAccount(signUpForm);
         accountService.login(account);
         return "redirect:/";
     }
 
+    @GetMapping("/check-email-token")
+    public String checkEmailToken(String token, String email, Model model) {
+        Account account = accountRepository.findByEmail(email);
+        String view = "account/checked-email";
+        if (account == null) {
+            model.addAttribute("error", "wrong.email");
+            return view;
+        }
 
+        if (!account.isValidToken(token)) {
+            model.addAttribute("error", "wrong.token");
+            return view;
+        }
+
+        accountService.completeSignUp(account);
+        model.addAttribute("numberOfUser", accountRepository.count());
+        model.addAttribute("nickname", account.getNickname());
+        return view;
+    }
+
+    @GetMapping("/check-email")
+    public String checkEmail(@CurrentAccount Account account, Model model) {
+        model.addAttribute("email", account.getEmail());
+        return "account/check-email";
+    }
+
+    @GetMapping("/resend-confirm-email")
+    public String resendConfirmEmail(@CurrentAccount Account account, Model model) {
+        if (!account.canSendConfirmEmail()) {
+            model.addAttribute("error", "인증 이메일은 1시간에 한번만 전송할 수 있습니다.");
+            model.addAttribute("email", account.getEmail());
+            return "account/check-email";
+        }
+
+        accountService.sendSignUpConfirmEmail(account);
+        return "redirect:/";
+    }
 
     @GetMapping("/profile/{nickname}")
     public String viewProfile(@PathVariable String nickname, Model model, @CurrentAccount Account account) {
