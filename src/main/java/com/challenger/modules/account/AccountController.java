@@ -19,14 +19,9 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AccountController {
 
-    private final SignUpFormValidator signUpFormValidator;
-    private final AccountService accountService;
+     private final AccountService accountService;
     private final AccountRepository accountRepository;
 
-    @InitBinder("signUpForm")
-    public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(signUpFormValidator);
-    }
 
     @GetMapping("/sign-up")
     public String signUpForm(Model model) {
@@ -36,9 +31,6 @@ public class AccountController {
 
     @PostMapping("/sign-up")
     public String signUpSubmit(@Valid SignUpForm signUpForm, Errors errors) {
-        if (errors.hasErrors()) {
-            return "account/sign-up";
-        }
 
         Account account = accountService.processNewAccount(signUpForm);
         accountService.login(account);
