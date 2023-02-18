@@ -73,7 +73,7 @@ __`2. 수정완료 메세지 팝업 노출`__ :pushpin: [코드 확인](https://
 - RedirectAttribute 클래스 사용
 
 __`3. 프로필 알람 설정`__
-- **부트스트랩 Froms의 Switches 활용** :pushpin: [코드 확인](Url)
+- **부트스트랩 Froms의 Switches 활용** :pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/d42362f50047d845e55f9d2fd21c3a78151a8153)
     - '스터디 생성, 참가 신청 결과, 참여중인 스터디'에 대한 정보 변경 시 알림 받기
     - 알림을 이메일로 받을지, 웹 알림 메시지로 받을지 선택.
 
