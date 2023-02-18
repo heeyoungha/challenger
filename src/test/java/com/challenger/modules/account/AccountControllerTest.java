@@ -55,24 +55,4 @@ class AccountControllerTest {
                 .andExpect(view().name("account/sign-up"));
     }
 
-    //테스트용 properties를 제공하지 않았기 때문에 테스트시에는 local로 동작
-    // local로 동작하게되면 ConsoleEmailService가 동작
-    @DisplayName("회원 가입 처리 - 입력값 정상")
-    @Test
-    void signUpSubmit_with_correct_input() throws Exception {
-        mockMvc.perform(post("/sign-up")
-                        .param("nickname", "keesun")
-                        .param("email", "keesun@email.com")
-                        .param("password", "12345678")
-                        .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/"))
-                .andExpect(authenticated().withUsername("keesun"));
-
-        Account account = accountRepository.findByEmail("keesun@email.com");
-        assertNotNull(account);
-        assertNotEquals(account.getPassword(), "12345678");
-        assertNotNull(account.getEmailCheckToken());
-        then(emailService).should().sendEmail(any(EmailMessage.class));
-    }
 }

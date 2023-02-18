@@ -38,7 +38,7 @@ public class AccountService implements UserDetailsService {
 
     private final AccountRepository accountRepository;
     private final EmailService emailService;
-    private final PasswordEncoder passwordEncoder;
+
     private final ModelMapper modelMapper;
 
     private final TemplateEngine templateEngine;
@@ -50,12 +50,6 @@ public class AccountService implements UserDetailsService {
         return newAccount;
     }
 
-    private Account saveNewAccount(@Valid SignUpForm signUpForm) {
-        signUpForm.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
-        Account account = modelMapper.map(signUpForm, Account.class);
-        account.generateEmailCheckToken();
-        return accountRepository.save(account);
-    }
 
     public void sendSignUpConfirmEmail(Account newAccount) {
         Context context = new Context();
