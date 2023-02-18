@@ -69,7 +69,7 @@ __`1. 소유자 여부에 따라 화면 다르게 노출`__ :pushpin: [코드 �
 - 유저 자신의 프로필
     - 수정 버튼 보이기
 
-__`2. 수정완료 메세지 팝업 노출`__ :pushpin: [코드 확인](Url)
+__`2. 수정완료 메세지 팝업 노출`__ :pushpin: [코드 확인](https://github.com/hy-HA/challenger/commit/20ac4890af5202d68206a62d1041adf6e115c2fa)
 - RedirectAttribute 클래스 사용
 
 __`3. 프로필 알람 설정`__

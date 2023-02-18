@@ -50,17 +50,7 @@ public class Account {
     @Basic(fetch = FetchType.EAGER)
     private String profileImage;
 
-    private boolean studyCreatedByEmail;
 
-    private boolean studyCreatedByWeb = true;
-
-    private boolean studyEnrollmentResultByEmail;
-
-    private boolean studyEnrollmentResultByWeb = true;
-
-    private boolean studyUpdatedByEmail;
-
-    private boolean studyUpdatedByWeb = true;
 
     @ManyToMany
     private Set<Tag> tags = new HashSet<>();
