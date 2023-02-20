@@ -1,78 +1,233 @@
 package com.challenger.modules.account;
 
-import com.challenger.infra.mail.EmailMessage;
 import com.challenger.infra.mail.EmailService;
+
+import com.challenger.modules.account.form.SignUpForm;
+import com.challenger.modules.account.validator.SignUpFormValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.then;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ValidatorFactory;
+
+import java.util.List;
+import java.util.Set;
+
+import static com.mysema.commons.lang.Assert.assertThat;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@Transactional
 class AccountControllerTest {
 
-    @Autowired private MockMvc mockMvc;
+    @Autowired AccountRepository accountRepository;
+    @Autowired AccountService accountService;
+    @Autowired EmailService emailService;
+    @Autowired SignUpFormValidator signUpFormValidator;
 
-    @Autowired
-    private AccountRepository accountRepository;
 
-    @MockBean
-    EmailService emailService;
-
-    @DisplayName("회원가입 화면 보이는지 테스트")
+    @DisplayName("이메일 중복으로 에러 발생")
     @Test
-    void signUpForm() throws Exception {
-        mockMvc.perform(get("/sign-up"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("account/sign-up"));
+    void 이메일_중복() {
+
+        // given
+        SignUpForm signUpForm = new SignUpForm();
+        signUpForm.setNickname("hee");
+        signUpForm.setEmail("hee@gmail.com");
+        signUpForm.setPassword("sdfh2347fdj");
+
+        SignUpForm signUpForm2 = new SignUpForm();
+        signUpForm2.setNickname("hee2");
+        signUpForm2.setEmail("hee@gmail.com");
+        signUpForm2.setPassword("sdfh2347fdhj89");
+
+        // when
+        accountService.processNewAccount(signUpForm);
+        signUpFormValidator.validate(signUpForm2, errors);
+
+        // then
+        assertTrue(errors.hasFieldErrors());
+
     }
 
-    // form을 보내는 테스트를 작성할때는 csrf 토큰을 넣어줘야 폼을 작성시 보낸 csrf 토큰값이 일치
-    // csrf 토큰이 없으면 스프링시큐리티가 403에러를 냄
-    @DisplayName("회원 가입 처리 - 입력값 오류")
-    @Test
-    void signUpSubmit_with_wrong_input() throws Exception {
-        mockMvc.perform(post("/sign-up")
-                        .param("nickname", "keesun")
-                        .param("email", "email..")
-                        .param("password", "12345")
-                        .with(csrf()))
-                .andExpect(status().isOk())
-                .andExpect(view().name("account/sign-up"));
-    }
 
-    //테스트용 properties를 제공하지 않았기 때문에 테스트시에는 local로 동작
-    // local로 동작하게되면 ConsoleEmailService가 동작
-    @DisplayName("회원 가입 처리 - 입력값 정상")
+    @DisplayName("회원가입 정상")
     @Test
-    void signUpSubmit_with_correct_input() throws Exception {
-        mockMvc.perform(post("/sign-up")
-                        .param("nickname", "keesun")
-                        .param("email", "keesun@email.com")
-                        .param("password", "12345678")
-                        .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/"))
-                .andExpect(authenticated().withUsername("keesun"));
+    public void 회원가입_정상 () throws Exception {
+        //given
+        SignUpForm signUpForm = new SignUpForm();
+        signUpForm.setNickname("hee");
+        signUpForm.setEmail("hee@gmail.com");
+        signUpForm.setPassword("sdfh2347fdj");
 
-        Account account = accountRepository.findByEmail("keesun@email.com");
-        assertNotNull(account);
-        assertNotEquals(account.getPassword(), "12345678");
+
+        //when
+        Account account = accountService.processNewAccount(signUpForm);
+        accountService.login(account);
+
+        //then
+        assertEquals(account.getNickname(), "hee");
+        assertNotEquals(account.getPassword(), "sdfh2347fdj");
         assertNotNull(account.getEmailCheckToken());
-        then(emailService).should().sendEmail(any(EmailMessage.class));
-    }
+
+        }
+
+    Errors errors = new Errors() {
+        @Override
+        public String getObjectName() {
+            return null;
+        }
+
+        @Override
+        public void setNestedPath(String nestedPath) {
+
+        }
+
+        @Override
+        public String getNestedPath() {
+            return null;
+        }
+
+        @Override
+        public void pushNestedPath(String subPath) {
+
+        }
+
+        @Override
+        public void popNestedPath() throws IllegalStateException {
+
+        }
+
+        @Override
+        public void reject(String errorCode) {
+
+        }
+
+        @Override
+        public void reject(String errorCode, String defaultMessage) {
+
+        }
+
+        @Override
+        public void reject(String errorCode, Object[] errorArgs, String defaultMessage) {
+
+        }
+
+        @Override
+        public void rejectValue(String field, String errorCode) {
+
+        }
+
+        @Override
+        public void rejectValue(String field, String errorCode, String defaultMessage) {
+
+        }
+
+        @Override
+        public void rejectValue(String field, String errorCode, Object[] errorArgs, String defaultMessage) {
+
+        }
+
+        @Override
+        public void addAllErrors(Errors errors) {
+
+        }
+
+        @Override
+        public boolean hasErrors() {
+            return false;
+        }
+
+        @Override
+        public int getErrorCount() {
+            return 0;
+        }
+
+        @Override
+        public List<ObjectError> getAllErrors() {
+            return null;
+        }
+
+        @Override
+        public boolean hasGlobalErrors() {
+            return false;
+        }
+
+        @Override
+        public int getGlobalErrorCount() {
+            return 0;
+        }
+
+        @Override
+        public List<ObjectError> getGlobalErrors() {
+            return null;
+        }
+
+        @Override
+        public ObjectError getGlobalError() {
+            return null;
+        }
+
+        @Override
+        public boolean hasFieldErrors() {
+            return false;
+        }
+
+        @Override
+        public int getFieldErrorCount() {
+            return 0;
+        }
+
+        @Override
+        public List<FieldError> getFieldErrors() {
+            return null;
+        }
+
+        @Override
+        public FieldError getFieldError() {
+            return null;
+        }
+
+        @Override
+        public boolean hasFieldErrors(String field) {
+            return false;
+        }
+
+        @Override
+        public int getFieldErrorCount(String field) {
+            return 0;
+        }
+
+        @Override
+        public List<FieldError> getFieldErrors(String field) {
+            return null;
+        }
+
+        @Override
+        public FieldError getFieldError(String field) {
+            return null;
+        }
+
+        @Override
+        public Object getFieldValue(String field) {
+            return null;
+        }
+
+        @Override
+        public Class<?> getFieldType(String field) {
+            return null;
+        }
+    };
+
 }
+

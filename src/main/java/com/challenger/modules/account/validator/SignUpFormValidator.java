@@ -22,11 +22,14 @@ public class SignUpFormValidator implements Validator {
     public void validate(Object object, Errors errors) {
         SignUpForm signUpForm = (SignUpForm)object;
         if (accountRepository.existsByEmail(signUpForm.getEmail())) {
-            errors.rejectValue("email", "invalid.email", new Object[]{signUpForm.getEmail()}, "이미 사용중인 이메일입니다.");
+            errors.rejectValue("email", "invalid.email",
+                    new Object[]{signUpForm.getEmail()}, "이미 사용중인 이메일입니다.");
         }
 
         if (accountRepository.existsByNickname(signUpForm.getNickname())) {
-            errors.rejectValue("nickname", "invalid.nickname", new Object[]{signUpForm.getEmail()}, "이미 사용중인 닉네임입니다.");
+            errors.rejectValue("nickname", "invalid.nickname",
+                    new Object[]{signUpForm.getEmail()}, "이미 사용중인 닉네임입니다.");
         }
+        //참고 - Errors 인터페이스가 제공하는 메소드(반환 타입 void)
     }
 }
