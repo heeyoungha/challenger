@@ -1,5 +1,6 @@
 package com.challenger.modules.account.form;
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -23,5 +24,6 @@ public class SignUpForm {
     @NotBlank
     @Length(min = 8, max = 50)
     private String password;
+
 
 }
