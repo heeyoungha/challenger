@@ -93,7 +93,7 @@ public class StudyService {
 
     private void checkIfExistingStudy(String path, Study study) {
         if (study == null) {
-            throw new IllegalArgumentException(path + "에 해당하는 모임가 없습니다.");
+            throw new IllegalArgumentException(path + "에 해당하는 모임이 없습니다.");
         }
     }
 

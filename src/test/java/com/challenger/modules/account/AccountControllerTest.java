@@ -5,6 +5,8 @@ import com.challenger.infra.mail.EmailService;
 
 import com.challenger.modules.account.form.SignUpForm;
 import com.challenger.modules.account.validator.SignUpFormValidator;
+import com.challenger.modules.study.domain.Study;
+import com.challenger.modules.study.service.StudyService;
 import lombok.Builder;
 import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.DisplayName;
@@ -40,6 +42,8 @@ class AccountControllerTest {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    StudyService studyService;
 
     @DisplayName("회원가입 - 이메일 중복으로 에러 발생")
     @Test
@@ -131,8 +135,8 @@ class AccountControllerTest {
 
             //회원가입
             SignUpForm signUpForm = new SignUpForm();
-            signUpForm.setNickname(s);
-            signUpForm.setEmail(emailList.get(counter.get()));
+            signUpForm.setNickname(nickList.get(counter.get()));
+            signUpForm.setEmail(s);
             signUpForm.setPassword(passwordList.get(counter.get()));
 
             //유효성 검증
@@ -156,6 +160,85 @@ class AccountControllerTest {
             System.out.println("닉네임: " + key + " 이메일: " + value.getEmail() + " 패스워드: " + value.getPassword());
         });
 
+    }
+
+
+
+    /*
+1. 회원1 (nickName: test1, email: test1@gmail.com, password: test.123),
+   회원2 (nickName: test2, email: test2@gmail.com, password: test.456) 을 생성한다.
+   이메일 중복체크 및 패스워드 유효성 검사를 하고, 만약 이메일 중복체크나 패스워드 유효성 검사가 실패하면  회원가입을 진행하지 않는다.
+   회원완료된 회원은 h2 또는 postgres 또는 mariaDB 를 이용해 데이터를 insert한다.
+
+2. 가입 완료된 회원1을 기준으로 로그인을 진행하고, 해당 회원 계정으로 스터디를 개설한다.
+3. 회원1이 개설한 스터디에 회원2가 참가한다.
+4. accountService에서 nickName 을 get 해서 회원을 관리해도 괜찮다.
+
+ */
+
+
+    @DisplayName("회원가입-스터디개설-참가")
+    @Test
+    public void test3() throws Exception {
+
+        //given
+        HashMap<String,Account> accountMap = new HashMap<>();
+
+        List<String> nickNameList = new ArrayList<>(Arrays.asList("test1", "test2"));
+        List<String> emailList = new ArrayList<>(Arrays.asList("test1@gmail.com", "test2@gmail.com"));
+        List<String> pwList = new ArrayList<>(Arrays.asList("test.123", "test.456"));
+
+        AtomicInteger counter = new AtomicInteger(0);
+
+
+        //when
+
+        //회원가입
+        emailList.forEach((s) -> {
+            SignUpForm signUpForm = new SignUpForm();
+            signUpForm.setNickname(nickNameList.get(counter.get()));
+            signUpForm.setEmail(s);
+            signUpForm.setPassword(pwList.get(counter.get()));
+
+            Errors errors = new BeanPropertyBindingResult(signUpForm,"signUpForm");
+            signUpFormValidator.validate(signUpForm, errors);
+
+            String rawPw = pwList.get(counter.get());
+
+            if(!errors.hasFieldErrors()) {
+                if(passwordEncoder.matches(rawPw,passwordEncoder.encode(rawPw))) {
+                    Account account = accountService.processNewAccount(signUpForm);
+                    accountMap.put(s, account);
+                }
+            }
+            counter.getAndIncrement();
+
+        });
+
+        accountMap.forEach((k,v) ->{
+            System.out.println("이메일"+k+"비밀번호"+v.getPassword());
+        });
+
+        Account account1 = accountMap.get(emailList.get(0));
+        Account account2 = accountMap.get(emailList.get(1));
+
+        //회원1 로그인
+        accountService.login(account1);
+        //회원1 스터디 개설
+        Study study = new Study();
+        studyService.createNewStudy(study,account1);
+        study.publish();
+        study.startRecruit();
+
+        //회원2 스터디 참가
+        study.addMember(account2);
+
+
+
+        //then
+        assertEquals(account1.getEmail(), "test1@gmail.com");
+        assertTrue(study.isManagedBy(account1));
+        assertEquals(study.getMemberCount(),1);
     }
 
 
